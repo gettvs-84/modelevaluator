@@ -10,7 +10,7 @@ from sklearn.metrics import (
     roc_auc_score, matthews_corrcoef, confusion_matrix
 )
 import plotly.express as px
-import joblib
+import pickle
 
 # Set page config
 st.set_page_config(
@@ -43,12 +43,13 @@ def load_data():
 def load_models():
     """Load all trained models from the model directory."""
     models = {}
-    model_files = [f for f in os.listdir('model') if f.endswith('.joblib')]
+    model_files = [f for f in os.listdir('model') if f.endswith('.pkl')]
     
     for model_file in model_files:
         model_name = os.path.splitext(model_file)[0]
         try:
-            models[model_name] = joblib.load(f'model/{model_file}')
+            with open(f'model/{model_file}', 'rb') as f:
+                models[model_name] = pickle.load(f)
         except Exception as e:
             st.warning(f"Could not load model {model_file}: {str(e)}")
     
