@@ -64,6 +64,73 @@ This project evaluates various machine learning models for detecting fraudulent 
    - Perform error analysis
 
 ## Setup and Usage
+
+### Prerequisites
+- Python 3.8+
+- pip package manager
+
+### Installation
 1. Install dependencies:
    ```bash
    pip install -r requirements.txt
+   ```
+
+### Model Files
+All trained models are stored in the `model/` directory as **pickle (.pkl) files**:
+- `decision_tree.pkl`
+- `random_forest.pkl`
+- `knn.pkl`
+- `naive_bayes.pkl`
+- `logistic_regression.pkl`
+- `xgboost.pkl`
+
+### Data Files
+- Training data: `data/credit_card_fraud_dataset.csv`
+- Test data: `data/credit_card_fraud_test.csv`
+
+### Running the Application
+1. **Streamlit Web App**:
+   ```bash
+   streamlit run streamlit_app.py
+   ```
+   
+   The app will launch in your browser at `http://localhost:8501`
+
+2. **Features**:
+   - Interactive model comparison dashboard
+   - Real-time performance metrics
+   - Confusion matrix visualization
+   - Multi-model evaluation
+
+### Project Structure
+```
+modelevaluator-main/
+├── streamlit_app.py          # Main Streamlit application
+├── requirements.txt          # Python dependencies
+├── README.md                # This file
+├── data/                    # Dataset files
+│   ├── credit_card_fraud_dataset.csv
+│   └── credit_card_fraud_test.csv
+└── model/                   # Trained models (.pkl files)
+    ├── decision_tree.pkl
+    ├── random_forest.pkl
+    ├── knn.pkl
+    ├── naive_bayes.pkl
+    ├── logistic_regression.pkl
+    └── xgboost.pkl
+```
+
+### Dependencies
+The application requires the following packages:
+- `streamlit==1.32.0` - Web framework
+- `numpy==1.26.4` - Numerical computing
+- `pandas==2.2.1` - Data manipulation
+- `scikit-learn==1.4.1.post1` - Machine learning
+- `plotly==5.18.0` - Interactive visualizations
+- `xgboost==2.0.3` - Gradient boosting models
+
+### Recent Changes
+- **Model Format**: Changed from joblib (.joblib) to pickle (.pkl) files for better compatibility
+- **Dependencies**: Updated requirements.txt to include only necessary packages
+- **Data Path**: Updated to use relative paths for cloud deployment compatibility
+- **Performance**: All models retrained and saved in the new format
